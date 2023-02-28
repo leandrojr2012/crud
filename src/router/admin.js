@@ -3,7 +3,7 @@ import { db } from "../db/_database";
 
 const router = express.Router()
 
-// ROTAS ADMIN
+// ROTAS ADMIN 
 
 router.get('/post', (req, res) =>{
     res.render('admin/posts.ejs')
