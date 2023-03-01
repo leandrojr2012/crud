@@ -20,8 +20,8 @@
         
         let date = {nome, sobrenome, idade, sexo, pergunta, email}
 
-        fetch("http://localhost:8080/admin/dados/cadastrar?", {
-            method: "POST",
+        fetch("http://localhost:8080/admin/dados/edit/<%= idUrl %>?", {
+            method: "PUT",
             body: JSON.stringify(date),
             headers: {"Content-type": "application/json; charset=UTF-8"}          
         }).then(function(response)
@@ -31,7 +31,7 @@
         limpaCampo()
         }
 </script>
-    <title>CRUD-POST</title>
+    <title>CRUD-UPDATE</title>
 </head>
 <body>
     <%- include('../partials/_navbar.ejs'); %>
@@ -93,12 +93,12 @@
                     </table>
                 </div>
                 <div class="conteinerBotao">
-                    <button class="btn btn-success" onclick="salvar(document.getElementById('nome').value, 
+                    <button class="btn btn-success" onclick="atualizar(document.getElementById('nome').value, 
                     document.getElementById('sobrenome').value, 
                     document.getElementById('idade').value, 
                     document.getElementById('sexo').value,
                     document.getElementById('pergunta').value, 
-                    document.getElementById('email').value)">CRIAR DADOS</button>
+                    document.getElementById('email').value)">ATUALIZAR DADOS</button>
                 </div>
             </main>
             </div>

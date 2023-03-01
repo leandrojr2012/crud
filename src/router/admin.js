@@ -1,5 +1,8 @@
 import express from "express";
-import { db } from "../db/_database";
+import {db} from "../db/_database.js";
+import {adicionarDados} from "../service/adminPost.js";
+import {editarDados} from "../service/adminUpdate.js"
+
 
 const router = express.Router()
 
@@ -10,12 +13,14 @@ router.get('/post', (req, res) =>{
 })
 
 router.get('/delete', async (req, res) =>{
-    const rows = await db .select('id_dados').from('dados')
+    const rows = await db.select('id_dados').from('dados')
     res.render('admin/delete.ejs', {rows:rows})
 })
 
 router.get('/update', async (req, res) =>{
-    res.render('admin/update.ejs')
+    const rows = await db .select('idcategoria', 'categoria_nome', 'categoria_slug').from('categoria').where({'idcategoria':req.params.id}).first()
+    const idUrl = req.params.id
+    res.render('admin/updatecategorias.ejs', {idUrl:idUrl, rows:rows})
 })
 
 router.get('/view', async (req, res) =>{
@@ -28,13 +33,12 @@ router.get('/view', async (req, res) =>{
 router.post('/dados/cadastrar', async (req, res) =>{
 
     const dados_nome = req.body.nome
-    const dados_sobrenome = req.body.sobrenonome
+    const dados_sobrenome = req.body.sobrenome
     const dados_idade = req.body.idade
     const dados_sexo = req.body.sexo
     const dados_pergunta = req.body.pergunta
     const dados_email = req.body.email
-    const dados_data = req.body.data
-    adicionarDados(dados_nome, dados_sobrenome, dados_idade, dados_sexo, dados_pergunta, dados_email, dados_data)   
+    adicionarDados(dados_nome, dados_sobrenome, dados_idade, dados_sexo, dados_pergunta, dados_email)   
         .then(()=>{
             return res.json({
                 erro:false,
@@ -69,7 +73,7 @@ router.put('/dados/edit/:id', async (req, res) =>{
 
     const id_dados = req.params.id
     const dados_nome = req.body.nome
-    const dados_sobrenome = req.body.sobrenonome
+    const dados_sobrenome = req.body.sobrenome
     const dados_idade = req.body.idade
     const dados_sexo = req.body.sexo
     const dados_pergunta = req.body.pergunta
