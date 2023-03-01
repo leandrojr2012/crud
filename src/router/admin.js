@@ -26,7 +26,7 @@ router.get('/update', async (req, res) =>{
 router.get('/view', async (req, res) =>{
     res.render('admin/view.ejs')
 })
-
+ 
 
 //ROTA ITERAÇÃO CATEGORIA
 
