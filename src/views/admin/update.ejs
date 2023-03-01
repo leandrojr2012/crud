@@ -16,7 +16,7 @@
         document.getElementById('email').value = ''
         }
         
-        function salvar(nome, sobrenome, idade, sexo, pergunta, email){
+        function atualizar(nome, sobrenome, idade, sexo, pergunta, email){
         
         let date = {nome, sobrenome, idade, sexo, pergunta, email}
 
@@ -24,11 +24,21 @@
             method: "PUT",
             body: JSON.stringify(date),
             headers: {"Content-type": "application/json; charset=UTF-8"}          
-        }).then(function(response)
-        {if(!response.ok){
-            response.json().then(erro =>alert(erro))}
+        }).then(function(response){
+            
+            if(!response.ok){
+                response.json().then(erro => {
+                      document.getElementById("alertErro").classList.remove("d-none")
+                      document.getElementById("alertSuccess").classList.add("d-none")
+                      document.getElementById("alertErro").innerHTML=erro.mensagem
+                      console.log(erro)
+                })
+            }else{
+                document.getElementById("alertErro").classList.add("d-none")
+                document.getElementById("alertSuccess").classList.remove("d-none")
+            }
+
         }).catch((error)=>{console.error(error)})
-        limpaCampo()
         }
 </script>
     <title>CRUD-UPDATE</title>
@@ -36,10 +46,13 @@
 <body>
     <%- include('../partials/_navbar.ejs'); %>
     <div>
-        <h1>Posts</h1>
+        <h1>Update</h1>
     </div>
     <h3>Nova Categoria:</h3>
-        <div class="alert alert-danger">
+        <div class="alert alert-danger d-none" id="alertErro">
+        </div>
+        <div class="alert alert-success d-none" id="alertSuccess">
+            Salvo com sucesso
         </div>
     <div class="container mt-4">
         <div class="card">
@@ -50,42 +63,42 @@
                             <tr>
                                 <td colspan="2">Nome:
                                     <div class="conteinerInput">
-                                        <input placeholder="Digite o NOME" type="text" class="input" id="nome" style="width: 80%"></input>
+                                       <input value= "<%= rows.dados_nome %>" type="text" class="input" id="nome" style="width: 80%"></input>
                                     </div>
                                 </td>                        
                             </tr>
                             <tr>
                                 <td colspan="2">Sobrenome:
                                     <div class="conteinerInput">
-                                        <input placeholder="Digite o SOBRENOME" type="text" class="input" id="sobrenome" style="width: 80%"></input>
+                                        <input value=<%= rows.dados_sobrenome %> type="text" class="input" id="sobrenome" style="width: 80%"></input>
                                     </div>
                                 </td>                       
                             </tr>
                             <tr>
                                 <td colspan="2">Idade:
                                     <div class="conteinerInput">
-                                        <input placeholder="Digite a idade" type="text" class="input" id="idade" style="width: 80%"></input>
+                                        <input value=<%= rows.dados_idade %> type="text" class="input" id="idade" style="width: 80%"></input>
                                     </div>
                                 </td>                       
                             </tr>
                             <tr>
                                 <td colspan="2">Sexo:
                                     <div class="conteinerInput">
-                                        <input placeholder="Digite o SEXO" type="text" class="input" id="sexo" style="width: 80%"></input>
+                                        <input value=<%= rows. dados_sexo%> type="text" class="input" id="sexo" style="width: 80%"></input>
                                     </div>
                                 </td>                       
                             </tr>
                             <tr>
                                 <td colspan="2">Pergunta:
                                     <div class="conteinerInput">
-                                        <input placeholder="Digite a pergunta" type="text" class="input" id="pergunta" style="width: 80%"></input>
+                                        <input value=<%= rows.dados_pergunta %> type="text" class="input" id="pergunta" style="width: 80%"></input>
                                     </div>
                                 </td>                       
                             </tr>
                             <tr>
                                 <td colspan="2">Email:
                                     <div class="conteinerInput">
-                                        <input placeholder="Digite o EMAIL" type="text" class="input" id="email" style="width: 80%"></input>
+                                        <input value=<%= rows.dados_email %> type="text" class="input" id="email" style="width: 80%"></input>
                                     </div>
                                 </td>                       
                             </tr>

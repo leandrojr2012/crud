@@ -17,14 +17,18 @@ router.get('/delete', async (req, res) =>{
     res.render('admin/delete.ejs', {rows:rows})
 })
 
-router.get('/update', async (req, res) =>{
-    const rows = await db .select('idcategoria', 'categoria_nome', 'categoria_slug').from('categoria').where({'idcategoria':req.params.id}).first()
+router.get('/update/:id', async (req, res) =>{
+    const rows = await db .select('id_dados', 'dados_nome', 'dados_sobrenome', 'dados_idade', 'dados_sexo', 'dados_pergunta', 'dados_email')
+    .from('dados')
+    .where({'id_dados':req.params.id})
+    .first()
     const idUrl = req.params.id
-    res.render('admin/updatecategorias.ejs', {idUrl:idUrl, rows:rows})
+    res.render('admin/update.ejs', {idUrl:idUrl, rows:rows})
 })
 
-router.get('/view', async (req, res) =>{
-    res.render('admin/view.ejs')
+router.get('/view', async (req,res) =>{
+    const rows = await db .select('id_dados', 'dados_nome', 'dados_sobrenome', 'dados_email').from('dados')
+res.render('admin/view.ejs', {rows:rows})
 })
  
 
