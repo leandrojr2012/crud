@@ -71,7 +71,7 @@ router.delete('/dados/deletar/:id', async (req, res) =>{
                 mensagem:err
             })
         })
-})
+})  
 
 router.put('/dados/edit/:id', async (req, res) =>{
 
