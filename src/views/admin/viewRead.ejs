@@ -10,7 +10,7 @@
 <body>
     <%- include('../partials/_navbar.ejs'); %>
     <div class="container mt-4">
-        <h2>Lista de Admin</h2>
+        <h2>Informações Admin</h2>
             <hr>
             <div class="container">Admin ID: <%= idUrl %></div>
                 <table>
@@ -39,6 +39,7 @@
                                         <hr>
                                 </td>
                         </tbody>
+                    <% }%>
                 </table>
                 <div>
                     <a href="/admin/view"><button class="btn btn-success">lista ADMIN(s)</button></a>
