@@ -33,7 +33,7 @@ res.render('admin/update.ejs', {idUrl:idUrl, rows:rows})
 router.get('/view', async (req,res) =>{
     const rows = await db .select('id_dados', 'dados_nome', 'dados_sobrenome', 'dados_email') 
     .from('dados')
-res.render('admin/view.ejs', {rows:rows})
+res.render('admin/view.ejs', {rows:rows}) 
 })
 
 router.get('/view/read/:id', async (req,res) =>{
