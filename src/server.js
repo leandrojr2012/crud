@@ -31,7 +31,7 @@ const port = 8080
 
     //Rotas Principais
     app.get('/', (req, res) => {
-        res.send('home');
+        res.render('principal/home.ejs');
     });
 
     //Rotas Admin
