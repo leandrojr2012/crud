@@ -43,7 +43,7 @@ router.get('/view/read/:id', async (req,res) =>{
     const idUrl = req.params.id
 res.render('admin/viewRead.ejs', {idUrl:idUrl, rows:rows})
 })
- 
+  
 
 //ROTA ITERAÇÃO ADMIN
 
