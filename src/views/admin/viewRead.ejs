@@ -12,41 +12,36 @@
     <div class="container mt-4">
         <h2>Lista de Admin</h2>
             <hr>
-            <div class="container">Você possui um total de: <%= rows.length %>  Admin(s)</div>
+            <div class="container">Admin ID: <%= idUrl %></div>
                 <table>
                     <% for(let i=0; i<rows.length; i++) {%>
                         <tbody>
                             <tr>
                                 <td class="linhas">
                                     <h3>
-                                       <%= rows[i].dados_nome %><h5><%= rows[i].dados_sobrenome %></h5>
+                                       Nome: <%= rows[i].dados_nome %>
                                     </h3>
+                                    <h5>
+                                       Sobrenome: <%= rows[i].dados_sobrenome %>
+                                    </h5>
+                                    <h5>
+                                       Idade: <%= rows[i].dados_idade %>
+                                    </h5>
+                                    <h5>
+                                       Sexo: <%= rows[i].dados_sexo %>
+                                    </h5>
+                                    <h5>
+                                       Pergunta: <%= rows[i].dados_pergunta %>
+                                    </h5>
                                     <h6>
                                        Email: <%= rows[i].dados_email %>
                                     </h6>
                                         <hr>
                                 </td>
-                                <td>
-                                    <a href="/admin/update/<%= rows[i].id_dados %>">
-                                        <button class="btn btn-success">Editar</button>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="/admin/delete/<%= rows[i].id_dados %>">
-                                        <button class="btn btn-danger">Deletar</button>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="/admin/view/read/<%= rows[i].id_dados %>">
-                                        <button class="btn btn-success">Informações</button>
-                                    </a>
-                                </td>
-                                    <% } %>
-                            </tr>
                         </tbody>
                 </table>
                 <div>
-                    <a href="/admin/post"><button class="btn btn-success">ADICIONAR</button></a>
+                    <a href="/admin/view"><button class="btn btn-success">lista ADMIN(s)</button></a>
                 </div>
     </div>
     

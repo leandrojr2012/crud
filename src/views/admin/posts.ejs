@@ -24,9 +24,18 @@
             method: "POST",
             body: JSON.stringify(date),
             headers: {"Content-type": "application/json; charset=UTF-8"}          
-        }).then(function(response)
-        {if(!response.ok){
-            response.json().then(erro =>alert(erro))}
+        }).then(function(response){
+        if(!response.ok){
+                response.json().then(erro => {
+                      document.getElementById("alertErro").classList.remove("d-none")
+                      document.getElementById("alertSuccess").classList.add("d-none")
+                      document.getElementById("alertErro").innerHTML=erro.mensagem
+                      console.log(erro)
+                })
+            }else{
+                document.getElementById("alertErro").classList.add("d-none")
+                document.getElementById("alertSuccess").classList.remove("d-none")
+            }
         }).catch((error)=>{console.error(error)})
         limpaCampo()
         }
@@ -39,7 +48,10 @@
         <h1>Posts</h1>
     </div>
     <h3>Nova Categoria:</h3>
-        <div class="alert alert-danger">
+        <div class="alert alert-danger d-none" id="alertErro" >
+        </div>
+        <div class="alert alert-success d-none" id="alertSuccess" >
+            Salvo com sucesso
         </div>
     <div class="container mt-4">
         <div class="card">
