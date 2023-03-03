@@ -31,7 +31,7 @@ res.render('admin/update.ejs', {idUrl:idUrl, rows:rows})
 })
 
 router.get('/view', async (req,res) =>{
-    const rows = await db .select('id_dados', 'dados_nome', 'dados_sobrenome', 'dados_email')
+    const rows = await db .select('id_dados', 'dados_nome', 'dados_sobrenome', 'dados_email') 
     .from('dados')
 res.render('admin/view.ejs', {rows:rows})
 })
