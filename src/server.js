@@ -3,6 +3,8 @@ import         bodyParser         from 'body-parser';
 import         path               from "path";
 import         { admin }          from './router/admin.js';
 import         { fileURLToPath }  from "url";
+import         { user }           from './router/user.js';
+import         passport           from 'passport';
 
 
 
@@ -10,6 +12,8 @@ const app = express()
 const port = 8080
 
 //CONFIG
+
+    app.use(passport.initialize())
 
     //Body Parser
     app.use(bodyParser.urlencoded({extended:true}))
@@ -36,6 +40,9 @@ const port = 8080
 
     //Rotas Admin
     app.use('/admin', admin)
+
+    //Rotas User
+    app.use('/User', user)
 
 
 

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script>
+        function limpaCampo(){
+    
+        document.getElementById('nome').value = ''
+        document.getElementById('email').value = ''
+        document.getElementById('senha').value = ''
+        document.getElementById('confirmaSenha').value = ''
+        }
+        
+        function salvar(nome, email, senha, confirmaSenha){
+        
+        let date = {nome, email, senha, confirmaSenha}
+
+        fetch("http://localhost:8080/user/dados/cadastrar/usuario?", {
+            method: "POST",
+            body: JSON.stringify(date),
+            headers: {"Content-type": "application/json; charset=UTF-8"}          
+        }).then(function(response){
+        if(!response.ok){
+                response.json().then(erro => {
+                      document.getElementById("alertErro").classList.remove("d-none")
+                      document.getElementById("alertSuccess").classList.add("d-none")
+                      document.getElementById("alertErro").innerHTML=erro.mensagem
+                      console.log(erro)
+                })
+            }else{
+                document.getElementById("alertErro").classList.add("d-none")
+                document.getElementById("alertSuccess").classList.remove("d-none")
+            }
+        }).catch((error)=>{console.error(error)})
+        }
+</script>
+    <title>CRUD-CADASTRO</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs'); %>
+    <div>
+        <h1>Cadastro</h1>
+    </div>
+        <div class="alert alert-danger d-none" id="alertErro" >
+        </div>
+        <div class="alert alert-success d-none" id="alertSuccess" >
+            Salvo com sucesso
+        </div>
+    <div class="container mt-4">
+        <div class="card">
+            <main>
+                <div class="conteinerTabela">
+                    <table class="tab">
+                        <tbody>
+                            <tr>
+                                <td colspan="2">Nome:
+                                    <div class="conteinerInput">
+                                        <input placeholder="Digite o NOME" type="text" class="input" id="nome" style="width: 80%"></input>
+                                    </div>
+                                </td>                        
+                            </tr>
+                            <tr>
+                                <td colspan="2">Email:
+                                    <div class="conteinerInput">
+                                        <input placeholder="Digite o EMAIL" type="email" class="input" id="email" style="width: 80%"></input>
+                                    </div>
+                                </td>                       
+                            </tr>
+                            <tr>
+                                <td colspan="2">Senha:
+                                    <div class="conteinerInput">
+                                        <input placeholder="Digite a SENHA" type="password" class="input" id="senha" style="width: 80%"></input>
+                                    </div>
+                                </td>                       
+                            </tr>
+                            <tr>
+                                <td colspan="2">Confirmar Senha:
+                                    <div class="conteinerInput">
+                                        <input placeholder="Confirme a SENHA" type="password" class="input" id="confirmaSenha" style="width: 80%"></input>
+                                    </div>
+                                </td>                       
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="conteinerBotao">
+                    <button class="btn btn-success" onclick="salvar(document.getElementById('nome').value,  
+                    document.getElementById('email').value,
+                    document.getElementById('senha').value,
+                    document.getElementById('confirmaSenha').value)">CADASTRAR</button>
+                </div>
+                <br>
+                <div>
+                    <a href="/user/login">
+                        <button class="btn btn-success">LOGIN</button>
+                    </a>
+                </div>
+            </main>
+            <div>
+            </div>
+            </div>
+    </div>
+
+    
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+<script src="/js/bootstrap.js"></script>
+</html>
