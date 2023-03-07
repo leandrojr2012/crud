@@ -55,7 +55,7 @@ router.post('/login/usuario', async (req, res) =>{
         }).catch((err) => {console.log(err)
             return  res.status(400).json({
                 erro:true,
-                mensagem:err  
+                mensagem:err   
             })
         })
 })
