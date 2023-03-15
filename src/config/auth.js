@@ -11,7 +11,7 @@ export async function autenticacao(passport){
                 }
 
                 compare(dadosUserSenha, usuario.dadosUserSenha, (erro, batem) =>{
-
+  
                     if(batem){
                         return done(null, usuario)
                     }else{
