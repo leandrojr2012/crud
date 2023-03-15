@@ -1,7 +1,7 @@
 import localStrategy from "passport-local";
 import { db } from "../db/_database.js";
 
-export function autenticacao(passport){
+export async function autenticacao(passport){
 
     passport.use(new localStrategy({usernameField: 'email'}, (dadosUserEmail, dadosUserSenha, done) =>{
         db  .select('dadosUserEmail')
@@ -20,5 +20,8 @@ export function autenticacao(passport){
                 })
             })
     }))
+    console.log(usuario)
+
 
 }
+console.log(usuario)

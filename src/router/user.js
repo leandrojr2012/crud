@@ -43,7 +43,8 @@ router.post('/login/usuario', async (req, res) =>{
     const dadosUserSenha = req.body.senha
 
     passport.authenticate("local", {
-        
+        successRedirect: '/',
+        failureRedirect: '/login'
     })
 
     loginUser(dadosUserEmail, dadosUserSenha)
