@@ -21,7 +21,7 @@ export async function autenticacao(passport){
             })
     }))
     console.log(usuario)
-
+  
 
 }
 console.log(usuario)  
