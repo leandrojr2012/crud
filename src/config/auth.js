@@ -17,7 +17,7 @@ export async function autenticacao(passport){
                     }else{
                         return done(null, false, {message: "Senha Incorreta"})
                     }
-                })
+                })  
             })
     }))
     console.log(usuario)
